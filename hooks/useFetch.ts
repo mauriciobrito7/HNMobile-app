@@ -54,4 +54,4 @@ const useFetch = <T>( endpoint:string, query: Record<string, unknown> ): UseFetc
   return { data, isLoading, error, refetch };
 };
 
-export default useFetch;
+export { useFetch };
