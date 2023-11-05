@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
 
 interface UseFetchReturn<T> {
- data: T;
- isLoading: boolean;
- error: AxiosError | null;
- refetch: () => void;
+  data: T;
+  isLoading: boolean;
+  error: AxiosError | null;
+  refetch: () => void;
 }
 
 const useFetch = <T>( endpoint:string, query: Record<string, unknown> ): UseFetchReturn<T> => {
