@@ -18,8 +18,6 @@ const MainScreen = () => {
 
   const articles = apiHits && extractHits(apiHits);
 
-  console.log('articles', articles);
-
   const goToDetail = () => {
     router.push('/home');
   };
