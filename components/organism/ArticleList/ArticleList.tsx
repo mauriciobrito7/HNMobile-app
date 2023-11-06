@@ -1,8 +1,10 @@
+import { useRouter } from 'expo-router';
+
 import { 
   FlatList, 
   RefreshControl, 
   ActivityIndicator, 
-  Alert 
+  Alert
 } from 'react-native';
 import { ArticleItem } from '@/components/molecules';
 import { Article } from '@/types/article';
@@ -24,6 +26,18 @@ const ArticleList = ({
   isFetchingMore,
   onDeleteArticle,
 }: ArticleListProps) => {
+  const router = useRouter();
+
+  const handlePressArticle = (article:Article) => {
+    const url = article.url || article.storyUrl || '';
+    if (!url) {
+      Alert.alert('Error', 'Invalid URL');
+      return;
+    }
+
+    router.push({ pathname: 'article', params: { url } });
+  };
+
 
   const handleDelete = (id: string) => {
     Alert.alert('Delete', 'Are you sure you want to delete this article?', [
@@ -38,7 +52,7 @@ const ArticleList = ({
       renderItem={({ item }) => (
         <ArticleItem 
           item={item} 
-          onPress={() => {}}
+          onPress={() => {handlePressArticle(item);}}
           onDelete={() => handleDelete(item.objectId)} 
         />
       )}
