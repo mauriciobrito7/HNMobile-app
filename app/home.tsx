@@ -1,40 +1,27 @@
-import { useRouter } from 'expo-router';
-import { useFetch } from '@/hooks/useFetch';
+import { useArticlePagination } from '@/hooks/useArticlePagination';
 
-import { View, Text, Button } from 'react-native';
+import { ArticleList } from '@/components/organism';
 
-import { APISearch } from '@/types/search';
-import { extractHits } from '@/extractors/hit';
-import { Hit } from '@/types/hit';
-import { config } from '../config';
+import { config } from '@/config';
 
 const MainScreen = () => {
-  const router = useRouter();
-  const { data, isLoading } = useFetch<APISearch>(`${config.API_URL}search_by_date`, {
-    query: 'mobile',
-  });
-
-  const { hits: apiHits } = data;
-
-  const articles = apiHits && extractHits(apiHits);
-
-  const goToDetail = () => {
-    router.push('/home');
-  };
-
-  if(isLoading) {
-    return <Text>loading...</Text>;
-  }
+  const apiURL = `${config.API_URL}search_by_date`;
+  const { 
+    articles, 
+    isFetchingMore, 
+    loadMoreArticles, 
+    refreshing, 
+    onRefresh 
+  } = useArticlePagination(apiURL, 'mobile');
 
   return (
-    <View>
-      <Text>Main Screen</Text>
-      <Text>Articles</Text>
-      {articles && articles.map((article: Hit) => (
-        <Text key={article.objectId}>{article.title}</Text>
-      ))}
-      <Button title="Go to Detail" onPress={goToDetail} />
-    </View>
+    <ArticleList
+      articles={articles}
+      isFetchingMore={isFetchingMore}
+      refreshing={refreshing}
+      onRefresh={onRefresh}
+      onEndReached={loadMoreArticles}
+    />
   );
 };
 

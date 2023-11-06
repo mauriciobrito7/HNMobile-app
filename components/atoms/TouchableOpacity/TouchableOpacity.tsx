@@ -1,4 +1,3 @@
-import React from 'react';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
 const MyTouchableOpacity = ({ children, ...rest }:TouchableOpacityProps) => {

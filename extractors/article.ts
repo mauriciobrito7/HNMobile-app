@@ -1,6 +1,6 @@
-import { APIHit, Hit } from '@/types/hit';
+import { APIArticle, Article } from '@/types/article';
 
-export const extractHit = (apiHit: APIHit): Hit => {
+export const extractArticle = (apiHit: APIArticle): Article => {
   return {
     highlightResult: apiHit._highlightResult,
     tags: apiHit._tags,
@@ -22,6 +22,6 @@ export const extractHit = (apiHit: APIHit): Hit => {
   };
 };
 
-export const extractHits = (apiHits: APIHit[]): Hit[] => {
-  return apiHits.map((apiHit) => extractHit(apiHit));
+export const extractArticles = (apiArticles: APIArticle[]): Article[] => {
+  return apiArticles.map((apiArticle) => extractArticle(apiArticle));
 };

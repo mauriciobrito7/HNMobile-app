@@ -8,7 +8,10 @@ interface UseFetchReturn<T> {
   refetch: () => void;
 }
 
-const useFetch = <T>( endpoint:string, query: Record<string, unknown> ): UseFetchReturn<T> => {
+const useFetch = <T>(
+  endpoint: string,
+  query: Record<string, unknown>
+): UseFetchReturn<T> => {
   const [data, setData] = useState<T>([] as unknown as T);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<AxiosError | null>(null);
@@ -44,7 +47,7 @@ const useFetch = <T>( endpoint:string, query: Record<string, unknown> ): UseFetc
 
   useEffect(() => {
     fetchData();
-  }, [endpoint]);
+  }, [endpoint, query.page]);
 
   const refetch = () => {
     setIsLoading(true);

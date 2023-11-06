@@ -31,6 +31,7 @@ module.exports = {
     'react'
   ],
   'rules': {
+    'max-len': [ 'error', { 'code': 80 } ],
     'react/react-in-jsx-scope': 'off',
     'indent': [
       'error',

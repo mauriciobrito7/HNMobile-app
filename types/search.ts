@@ -1,4 +1,4 @@
-import { APIHit } from './hit';
+import { APIArticle } from './article';
 
 export interface APISearch {
   exhaustive: {
@@ -7,7 +7,7 @@ export interface APISearch {
   };
   exhaustiveNbHits: boolean;
   exhaustiveTypo: boolean;
-  hits: APIHit[];
+  hits: APIArticle[];
   hitsPerPage: number;
   nbHits: number;
   nbPages: number;
