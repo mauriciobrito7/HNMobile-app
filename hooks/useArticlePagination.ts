@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useFetch } from '@/hooks/useFetch';
 import { extractArticles } from '@/extractors/article';
+import { useStoredArticles } from '@/hooks/useStoredArticles';
+import { useNetConnection } from './useNetConnection';
 
 import { APISearch } from '@/types/search';
 import { Article } from '@/types/article';
@@ -18,6 +20,9 @@ const useArticlePagination = (apiUrl: string, query: string) => {
     page,
   });
 
+  const { storedArticles, saveArticles } = useStoredArticles('articles');
+  const { isConnected } = useNetConnection();
+
   useEffect(() => {
     if (data && data.hits && !isLoading) {
       let newArticles = page === 0 
@@ -32,10 +37,18 @@ const useArticlePagination = (apiUrl: string, query: string) => {
       });
       
       setArticles(uniqueArticles);
+      saveArticles(uniqueArticles);
       setIsFetchingMore(false);
       setTotalPages(data.nbPages);
     }
   }, [data, page, isLoading, deletedArticleIds]);
+
+  useEffect(() => {
+    // When there's no internet connection, set articles from storage
+    if (!isConnected) {
+      setArticles(storedArticles);
+    }
+  }, [storedArticles]);
 
   const onRefresh = useCallback(async () => {
     setPage(0);
