@@ -1,4 +1,6 @@
-import { Text as RNText, TextProps, StyleSheet } from 'react-native';
+import { Text as RNText, TextProps } from 'react-native';
+
+import styles from './Text.style';
 
 interface Props extends TextProps {
   children: React.ReactNode;
@@ -11,13 +13,5 @@ const Text: React.FC<Props> = ({ style, children, ...rest }: Props) => {
     </RNText>
   );
 };
-
-const styles = StyleSheet.create({
-  text: {
-    // Define default styles for text here
-    fontSize: 16,
-    color: '#333',
-  },
-});
 
 export { Text };

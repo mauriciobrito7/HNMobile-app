@@ -38,7 +38,7 @@ const ArticleItem = ({ item, onPress, onDelete }: ArticleProps) => {
   };
 
   return (
-    <Swipeable renderRightActions={renderRightActions}>
+    <Swipeable friction={2} renderRightActions={renderRightActions}>
       <RectButton onPress={onPress} style={styles.container}>
         <Text style={styles.title}>{item.title || item.storyTitle}</Text>
         <Text style={styles.date}>{timeAgo}</Text>

@@ -13,7 +13,7 @@ Para instalar y ejecutar HN Mobile en su máquina local, siga estos pasos:
 1. Clone el repositorio a su máquina local:
 
 ```sh
-git clone https://github.com/your-username/hnmobile-app.git
+git clone https://github.com/mauriciobrito7/HNMobile-app.git
 cd hnmobile-app
 
 # Si usa yarn
@@ -25,6 +25,8 @@ npm install
 
 ## Inicio de la Aplicación
 
+Asegurese de incluir las variables de entorno en un archivo .env en la raíz del proyecto. Puede encontrar un ejemplo de las variables de entorno en el archivo `.env.example.`
+
 Antes de iniciar, asegúrese de haber instalado la aplicación Expo Go en su dispositivo físico para poder ejecutar la aplicación en desarrollo. Puede descargar Expo Go desde la App Store o Google Play Store según su dispositivo.
 
 ### Para iniciar la aplicación y escanear con Expo Go
@@ -32,7 +34,11 @@ Antes de iniciar, asegúrese de haber instalado la aplicación Expo Go en su dis
 Utilice el siguiente comando para arrancar la aplicación. Luego, escanee el código QR generado con la aplicación Expo Go en su dispositivo físico.
 
 ```sh
+# Si usa yarn
 yarn start
+
+# Si usa npm
+npm start
 ```
 
 Una vez que la aplicación se haya iniciado, verá un código QR en la terminal o en la página web que se abre automáticamente (normalmente en localhost:19002). Escanee este código QR con la aplicación Expo Go en su dispositivo Android o iOS para abrir la aplicación.

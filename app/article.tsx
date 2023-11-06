@@ -1,9 +1,16 @@
-import { useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams } from 'expo-router';
+import { useState } from 'react';
 
-import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { 
+  View,
+  StyleSheet,
+  ActivityIndicator,
+  SafeAreaView 
+} from 'react-native';
 import { Text } from '@/components/atoms';
 import { WebView } from 'react-native-webview';
-import { useState } from 'react';
+
+import colors from '@/theme/color';
 
 const ArticleScreen = () => {
   const [loading, setLoading] = useState(true);
@@ -20,17 +27,29 @@ const ArticleScreen = () => {
   }
   
   return (
-    <View style={styles.container}>
-      {loading && (
-        <ActivityIndicator
-          size="large"
-          style={styles.loader}
-          color="#000000"
-        />
-      )}
-      <WebView source={{ uri: url }} onLoadStart={() => setLoading(true)}
-        onLoadEnd={() => setLoading(false)} />
-    </View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
+      <Stack.Screen
+        options={{
+          headerStyle: { backgroundColor: colors.primary },
+          headerShadowVisible: false,
+          headerTitle: 'HN Article - Web View',
+          headerTitleStyle: { color: colors.white },
+          headerTintColor: colors.white
+        }}
+
+      />
+      <View style={styles.container}>
+        {loading && (
+          <ActivityIndicator
+            size="large"
+            style={styles.loader}
+            color={colors.black}
+          />
+        )}
+        <WebView source={{ uri: url }} onLoadStart={() => setLoading(true)}
+          onLoadEnd={() => setLoading(false)} />
+      </View>
+    </SafeAreaView>
   );
 };
 
