@@ -15,7 +15,7 @@ interface HighlightResult {
  url?: HighlightResultField;
 }
 
-export interface APIHit {
+export interface APIArticle {
  _highlightResult: HighlightResult;
  _tags: string[];
  author: string;
@@ -35,7 +35,7 @@ export interface APIHit {
  num_comments?: number;
 }
 
-type HitMapping = {
+type ArticleMapping = {
  _highlightResult: 'highlightResult';
  _tags: 'tags';
  comment_text: 'commentText';
@@ -50,4 +50,4 @@ type HitMapping = {
  num_comments: 'numComments';
 };
 
-export type Hit = Remap<APIHit, HitMapping>;
+export type Article = Remap<APIArticle, ArticleMapping>;
