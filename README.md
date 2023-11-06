@@ -60,16 +60,16 @@ npm run ios
 
 ## Características
 
--Navegación y enrutamiento integrados con expo-router.
--Soporte para fuentes personalizadas y vector icons con expo-font y react-native-vector-icons.
--Implementación de la barra de estado con expo-status-bar.
--Manejo de llamadas API a través de axios.
--Uso de date-fns para el manejo de fechas y horas.
--Optimización de la experiencia del usuario en diferentes dispositivos con react-native-safe-area-context y react-native-screens.
+- Navegación y enrutamiento integrados con expo-router.
+- Soporte para fuentes personalizadas y vector icons con expo-font y react-native-vector-icons.
+- Implementación de la barra de estado con expo-status-bar.
+- Manejo de llamadas API a través de axios.
+- Uso de date-fns para el manejo de fechas y horas.
+- Optimización de la experiencia del usuario en diferentes dispositivos con react-native-safe-area-context y react-native-screens.
 
 ## Construido con
 
--React Native para el desarrollo multiplataforma.
--TypeScript para agregar tipado estático.
--Expo para simplificar el proceso de desarrollo y despliegue.
--Eslint y Prettier para asegurar la calidad del código y mantener un estilo consistente.
+- React Native para el desarrollo multiplataforma.
+- TypeScript para agregar tipado estático.
+- Expo para simplificar el proceso de desarrollo y despliegue.
+- Eslint y Prettier para asegurar la calidad del código y mantener un estilo consistente.
