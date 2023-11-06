@@ -1,5 +1,6 @@
 import { SwipeButton, Text } from '@/components/atoms';
 import { RectButton, Swipeable } from 'react-native-gesture-handler';
+import { formatDistanceToNow, parseISO } from 'date-fns';
 
 import { Article } from '@/types/article';
 import { Animated } from 'react-native';
@@ -13,6 +14,10 @@ interface ArticleProps {
 }
 
 const ArticleItem = ({ item, onPress, onDelete }: ArticleProps) => {
+  const timeAgo = formatDistanceToNow(
+    parseISO(item.createdAt), { addSuffix: true }
+  );
+
   const renderRightActions = (
     progress: Animated.AnimatedInterpolation<string | number>,
     dragX: Animated.AnimatedInterpolation<string | number>
@@ -36,7 +41,7 @@ const ArticleItem = ({ item, onPress, onDelete }: ArticleProps) => {
     <Swipeable renderRightActions={renderRightActions}>
       <RectButton onPress={onPress} style={styles.container}>
         <Text style={styles.title}>{item.title || item.storyTitle}</Text>
-        <Text style={styles.date}>Date: {item.createdAt}</Text>
+        <Text style={styles.date}>{timeAgo}</Text>
       </RectButton>
     </Swipeable>
   );
