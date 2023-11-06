@@ -11,7 +11,8 @@ const MainScreen = () => {
     isFetchingMore, 
     loadMoreArticles, 
     refreshing, 
-    onRefresh 
+    onRefresh,
+    markArticleAsDeleted
   } = useArticlePagination(apiURL, 'mobile');
 
   return (
@@ -21,6 +22,7 @@ const MainScreen = () => {
       refreshing={refreshing}
       onRefresh={onRefresh}
       onEndReached={loadMoreArticles}
+      onDeleteArticle={markArticleAsDeleted}
     />
   );
 };

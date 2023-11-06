@@ -9,6 +9,7 @@ const useArticlePagination = (apiUrl: string, query: string) => {
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [articles, setArticles] = useState<Article[]>([]);
+  const [deletedArticleIds, setDeletedArticleIds] = useState<string[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [isFetchingMore, setIsFetchingMore] = useState(false);
 
@@ -19,19 +20,22 @@ const useArticlePagination = (apiUrl: string, query: string) => {
 
   useEffect(() => {
     if (data && data.hits && !isLoading) {
-      const newArticles = page === 0 
+      let newArticles = page === 0 
         ? extractArticles(data.hits) 
         : [...articles, ...extractArticles(data.hits)];
-      
+
+      newArticles = newArticles.
+        filter(article => !deletedArticleIds.includes(article.objectId));
+
       const uniqueArticles = newArticles.filter((article, index, self) => {
         return self.findIndex(a => a.objectId === article.objectId) === index;
       });
-        
+      
       setArticles(uniqueArticles);
       setIsFetchingMore(false);
       setTotalPages(data.nbPages);
     }
-  }, [data, page, isLoading]);
+  }, [data, page, isLoading, deletedArticleIds]);
 
   const onRefresh = useCallback(async () => {
     setPage(0);
@@ -48,12 +52,17 @@ const useArticlePagination = (apiUrl: string, query: string) => {
     }
   }, [isFetchingMore, refreshing, isLoading, page, totalPages]);
 
+  const markArticleAsDeleted = useCallback((id: string) => {
+    setDeletedArticleIds(currentDeletedIds => [...currentDeletedIds, id]);
+  }, []);
+
   return {
     articles,
     refreshing,
     onRefresh,
     loadMoreArticles,
     isFetchingMore,
+    markArticleAsDeleted,
   };
 };
 

@@ -1,7 +1,7 @@
-import { Button } from './Button/Button';
+
 import { Icon } from './Icon/Icon';
 import { Image } from './Image/Image';
-import { TouchableOpacity } from './TouchableOpacity/TouchableOpacity';
+import { SwipeButton } from './SwipeButton/SwipeButton';
 import { Text } from './Text/Text';
 
-export { Button, Icon, Image, TouchableOpacity, Text };
+export { Icon, Image, SwipeButton, Text };
